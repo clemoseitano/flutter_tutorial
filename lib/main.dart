@@ -8,9 +8,33 @@ void main() {
   ));
 }
 
+class MyButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        print('MyButton was tapped!');
+      },
+      child: Container(
+        height: 36.0,
+        padding: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          color: Colors.lightGreen[500],
+        ),
+        child: Center(
+          child: Text('Engage'),
+        ),
+      ),
+    );
+  }
+}
+
 class TutorialHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Text contentText = Text('Hello, world!');
     // Scaffold is a layout for the major Material Components.
     return Scaffold(
       appBar: AppBar(
@@ -30,7 +54,8 @@ class TutorialHome extends StatelessWidget {
       ),
       // body is the majority of the screen.
       body: Center(
-        child: Text('Hello, world!'),
+        child: Column(children: <Widget>[contentText, MyButton()],
+          mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,),
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Add', // used by assistive technologies
