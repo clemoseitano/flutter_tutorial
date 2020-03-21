@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'views.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -8,20 +9,26 @@ void main() {
   ));
 }
 
+class AddToCartButton extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => AddToCartButtonState();
+}
 
-class AddToCartButton extends StatelessWidget {
+class AddToCartButtonState extends State<AddToCartButton> {
+  int _counter = 0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 36.0,
-      padding: const EdgeInsets.all(8.0),
+      //padding: const EdgeInsets.all(8.0),
       margin: const EdgeInsets.symmetric(horizontal: 8.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
-        //color: Color.fromARGB(100, 100, 100, 100),
-        border: Border.all(color: Color.fromARGB(100, 100, 100, 100))
-        //color: Colors.lightGreen[500],
-      ),
+          borderRadius: BorderRadius.circular(5.0),
+          //color: Color.fromARGB(100, 100, 100, 100),
+          border: Border.all(color: Color.fromARGB(100, 100, 100, 100))
+          //color: Colors.lightGreen[500],
+          ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,13 +37,24 @@ class AddToCartButton extends StatelessWidget {
           IconButton(
             padding: const EdgeInsets.all(0.0),
             icon: Icon(Icons.remove),
-            onPressed: null,
+            onPressed: () => setState(() {
+              if (_counter > 0) _counter--;
+            }),
           ),
-          Text('Qty: 2'),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            height: 36.0,
+            alignment: Alignment.center,
+            margin: const EdgeInsets.symmetric(horizontal: 2.0),
+            decoration: embeddedTextBorder(),
+            child: Text('Qty: $_counter'),
+          ),
           IconButton(
             padding: const EdgeInsets.all(0.0),
             icon: Icon(Icons.add),
-            onPressed: null,
+            onPressed: () => setState(() {
+              _counter++;
+            }),
           )
         ],
       ),
