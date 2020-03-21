@@ -8,24 +8,37 @@ void main() {
   ));
 }
 
-class MyButton extends StatelessWidget {
+
+class AddToCartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        print('MyButton was tapped!');
-      },
-      child: Container(
-        height: 36.0,
-        padding: const EdgeInsets.all(8.0),
-        margin: const EdgeInsets.symmetric(horizontal: 8.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0),
-          color: Colors.lightGreen[500],
-        ),
-        child: Center(
-          child: Text('Engage'),
-        ),
+    return Container(
+      height: 36.0,
+      padding: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        //color: Color.fromARGB(100, 100, 100, 100),
+        border: Border.all(color: Color.fromARGB(100, 100, 100, 100))
+        //color: Colors.lightGreen[500],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          IconButton(
+            padding: const EdgeInsets.all(0.0),
+            icon: Icon(Icons.remove),
+            onPressed: null,
+          ),
+          Text('Qty: 2'),
+          IconButton(
+            padding: const EdgeInsets.all(0.0),
+            icon: Icon(Icons.add),
+            onPressed: null,
+          )
+        ],
       ),
     );
   }
@@ -54,8 +67,11 @@ class TutorialHome extends StatelessWidget {
       ),
       // body is the majority of the screen.
       body: Center(
-        child: Column(children: <Widget>[contentText, MyButton()],
-          mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,),
+        child: Column(
+          children: <Widget>[contentText, AddToCartButton()],
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Add', // used by assistive technologies
